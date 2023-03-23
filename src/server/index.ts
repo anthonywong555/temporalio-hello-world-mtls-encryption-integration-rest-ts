@@ -6,6 +6,10 @@ import cors from 'cors';
 import 'dotenv/config';
 import express from 'express';
 import { TemporalSingleton } from '../temporal/client';
+
+/**
+ * Example Worker
+ */
 import { example } from '../temporal/workers/example/workflows';
 
 /**
@@ -25,13 +29,13 @@ const PORT = process.env.PORT ? process.env.PORT : '3000';
 app.post('/example', async(request: any, response: any) => {
   try {
     const { body } = request;
+    const taskQueue = process.env.EXAMPLE_TASK_QUEUE ? process.env.EXAMPLE_TASK_QUEUE : 'example-queue';
     const temporalClient = await TemporalSingleton.getWorkflowClient();
-    const taskQueue = 'example-queue';
     const result = await temporalClient.execute(example, {
       taskQueue,
-      workflowId: `my-business-id-${Date.now()}`,
+      workflowId: `example-workflowId-${Date.now()}`,
       args: [body]
-    })
+    });
 
     response.send(result);
   } catch(e) {
