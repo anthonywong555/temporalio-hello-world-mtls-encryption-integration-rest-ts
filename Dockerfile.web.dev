@@ -1,0 +1,11 @@
+FROM node:latest
+
+ENV NODE_ENV development
+
+WORKDIR /usr/src/app/web
+
+COPY . .
+
+RUN npm install
+
+CMD ["npm", "run", "client.watch"]
