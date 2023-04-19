@@ -15,7 +15,12 @@ brew install temporal
 temporal server start-dev
 ```
 
-2. Copy the .env-example file and rename it to .env.
+2. Copy the .env-example file and rename it to .env. Modify the .env with the following:
+
+| key                       | value               |
+|---------------------------|---------------------|
+| MTLS                      | false               |
+| ENCRYPTION                | false               |
 
 ## Getting Started with Cloud
 
