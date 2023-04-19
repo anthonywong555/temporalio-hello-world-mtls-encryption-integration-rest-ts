@@ -36,6 +36,7 @@ temporal server start-dev
 | TEMPORAL_CLIENT_CERT_PATH | ./tls/ca.pem        |
 | TEMPORAL_CLIENT_KEY_PATH  | ./tls/ca.key        |
 | MTLS                      | true                |
+| ENCRYPTION                | false               |
 
 Reference: [Connecting to Temporal Cloud (with mTLS)](https://docs.temporal.io/typescript/security?lang=ts#connecting-to-temporal-cloud-with-mtls)
 
@@ -69,7 +70,13 @@ curl -X POST http://localhost:8080/example \
 
 ## Running Encryption in Command Line
 
-1. To run the Codec Server, execute the following command:
+1. To run the Codec Server, then fill in the .env with the following:
+
+| key                       | value               |
+|---------------------------|---------------------|
+| ENCRYPTION                | true                |
+
+2. Execute the following command:
 
 ```sh
 npm run encryption
