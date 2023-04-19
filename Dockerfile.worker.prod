@@ -1,0 +1,15 @@
+FROM node:16-bullseye
+
+ENV NODE_ENV production
+
+WORKDIR /usr/src/app/worker
+
+COPY . .
+
+RUN npm install typescript -g
+
+RUN npm install --only=production
+
+RUN npm run build
+
+CMD ["lib/temporal/workers/example/index.js"]

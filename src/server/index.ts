@@ -8,7 +8,7 @@ import express from 'express';
 import { TemporalSingleton } from '../temporal/client';
 
 /**
- * Example Worker
+ * Example Worker;
  */
 import { example } from '../temporal/workers/example/workflows';
 
