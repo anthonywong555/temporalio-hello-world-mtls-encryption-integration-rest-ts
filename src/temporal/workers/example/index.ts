@@ -7,11 +7,6 @@ import { getDataConverter } from '../../encryption/data-converter';
 import 'dotenv/config';
 import * as activities from './activities';
 
-/**
- * Exports
- */
-export const EXAMPLE_QUEUE = 'example-queue';
-
 async function run() {
   const isMTLS = process.env.MTLS === 'true';
   const isENCRYPTION = process.env.ENCRYPTION === 'true';
