@@ -1,15 +1,29 @@
+FROM node:latest AS build
+
+WORKDIR /usr/src/app/worker
+
+COPY . .
+
+RUN npm install
+
+RUN npm install -g typescript ts-node
+
+RUN npm run build
+
+RUN npm run build:workflow
+
 FROM node:16-bullseye
 
 ENV NODE_ENV production
 
 WORKDIR /usr/src/app/worker
 
-COPY . .
+COPY package.json .
 
-RUN npm install typescript -g
+COPY tsconfig.json .
 
-RUN npm install --only=production
+RUN npm install --production
 
-RUN npm run build
+COPY --from=build /usr/src/app/worker dist
 
-CMD ["lib/temporal/workers/example/index.js"]
+RUN node dist/lib/worker.js
