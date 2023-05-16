@@ -1,4 +1,5 @@
 import express from 'express';
+import 'dotenv/config';
 import cors from 'cors';
 import * as proto from '@temporalio/proto';
 import { EncryptionCodec } from './encryption-codec';
@@ -45,7 +46,7 @@ function toJSON({ metadata, data }: proto.temporal.api.common.v1.IPayload): JSON
   };
 }
 
-async function main({ port = 8888 }: any) {
+async function main({ port = process.env.ENCRYPTION_PORT ? process.env.ENCRYPTION_PORT : 8888 }: any) {
   const codec = await EncryptionCodec.create('test-key-id');
 
   const app = express();

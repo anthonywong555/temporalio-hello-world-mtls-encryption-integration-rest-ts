@@ -8,11 +8,6 @@ import express from 'express';
 import { TemporalSingleton } from '../temporal/client';
 
 /**
- * Example Worker;
- */
-import { example } from '../temporal/workers/example/workflows';
-
-/**
  * Clients
  */
 const app = express();
@@ -31,7 +26,7 @@ app.post('/example', async(request: any, response: any) => {
     const { body } = request;
     const taskQueue = process.env.EXAMPLE_TASK_QUEUE ? process.env.EXAMPLE_TASK_QUEUE : 'example-queue';
     const temporalClient = await TemporalSingleton.getWorkflowClient();
-    const result = await temporalClient.execute(example, {
+    const result = await temporalClient.execute('example', {
       taskQueue,
       workflowId: `example-workflowId-${Date.now()}`,
       args: [body]
