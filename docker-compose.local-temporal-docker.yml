@@ -1,6 +1,7 @@
 version: '3'
 services:
   web:
+    container_name: web
     build:
       context: .
       dockerfile: Dockerfile.web.dev
@@ -14,6 +15,7 @@ services:
     networks:
       - temporal-network
   worker:
+    container_name: worker
     build:
       context: .
       dockerfile: Dockerfile.worker.dev
@@ -22,9 +24,12 @@ services:
       - ./:/usr/src/app/worker
       - /usr/src/app/worker/node_modules
     env_file: .env
+    ports:
+      - 9464:9464
     networks:
       - temporal-network
   encryption:
+    container_name: encryption
     build:
       context: .
       dockerfile: Dockerfile.encryption.dev

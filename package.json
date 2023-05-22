@@ -7,8 +7,8 @@
     "build.watch": "tsc --build --watch",
     "lint": "eslint .",
     "encryption": "ts-node src/temporal/encryption/codec-server.ts",
-    "worker": "ts-node src/temporal/workers/example/index.ts",
-    "worker.watch": "nodemon src/temporal/workers/example/index.ts",
+    "worker": "ts-node src/temporal/workers/instrumentation/index.ts",
+    "worker.watch": "nodemon src/temporal/workers/instrumentation/index.ts",
     "client": "ts-node src/server/index.ts",
     "client.watch": "nodemon src/server/index.ts"
   },
@@ -29,7 +29,9 @@
     "body-parser": "^1.20.1",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "triple-beam": "^1.3.0",
+    "winston": "^3.8.2"
   },
   "devDependencies": {
     "@sendgrid/mail": "^7.7.0",

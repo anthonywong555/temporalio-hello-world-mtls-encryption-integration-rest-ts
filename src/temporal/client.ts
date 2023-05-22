@@ -66,9 +66,6 @@ export class TemporalSingleton {
           },
         });
       } else {
-        console.log({
-          ...(address && {address})
-        });
         this.instanceOfNativeConnection = await NativeConnection.connect({
           ...(address && {address})
         });
@@ -105,7 +102,7 @@ export class TemporalSingleton {
 
   private static getEnv(): Env {
     return {
-      address: process.env.TEMPORAL_ADDRESS || '',
+      address: process.env.TEMPORAL_ADDRESS || 'default',
       namespace: this.requiredEnv('TEMPORAL_NAMESPACE'),
       clientCertPath: this.requiredEnv('TEMPORAL_CLIENT_CERT_PATH'),
       clientKeyPath: this.requiredEnv('TEMPORAL_CLIENT_KEY_PATH'),
